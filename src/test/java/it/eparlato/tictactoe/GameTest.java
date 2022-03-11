@@ -51,4 +51,31 @@ class GameTest {
 
         assertThat(game.state()).isEqualTo(GameState.PLAYER_COULD_NOT_EXECUTE_ACTION);
     }
+
+    @Test
+    void switches_player_when_a_field_is_taken_on_the_board() {
+        FieldCoordinates differentCoordinates = new FieldCoordinates(0, 1);
+
+        when(board.state())
+                .thenReturn(BoardState.FIELD_TAKEN)
+                .thenReturn(BoardState.FIELD_TAKEN);
+
+        game.takeField(FIELD_COORDINATES);
+
+        assertThat(game.currentPlayer()).isEqualTo(Player.NOUGHT);
+
+        game.takeField(differentCoordinates);
+
+        assertThat(game.currentPlayer()).isEqualTo(Player.CROSS);
+    }
+
+    @Test
+    void do_not_switch_player_if_a_field_is_already_taken_on_the_board() {
+        when(board.state())
+                .thenReturn(BoardState.FIELD_ALREADY_TAKEN);
+
+        game.takeField(FIELD_COORDINATES);
+
+        assertThat(game.currentPlayer()).isEqualTo(Player.CROSS);
+    }
 }
