@@ -13,12 +13,15 @@ public class Game
         this.board = board;
     }
 
+    public void takeField(FieldCoordinates fieldCoordinates) {
+        board.takeField(fieldCoordinates);
+
+        if (board.state().equals(BoardState.FIELD_TAKEN)) {
+            state = GameState.WAITING_NEXT_PLAYER;
+        }
+    }
 
     public GameState state() {
         return state;
-    }
-
-    public void takeField(FieldCoordinates fieldCoordinates) {
-        board.takeField(fieldCoordinates);
     }
 }
