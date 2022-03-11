@@ -17,11 +17,11 @@ public class Game
         board.takeField(fieldCoordinates);
 
         if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
-           state = GameState.NO_CHANGES;
+           state = GameState.PLAYER_COULD_NOT_EXECUTE_ACTION;
         }
 
         if (board.state().equals(BoardState.FIELD_TAKEN)) {
-            state = GameState.WAITING_NEXT_PLAYER;
+            state = GameState.PLAYER_EXECUTED_ACTION;
         }
     }
 

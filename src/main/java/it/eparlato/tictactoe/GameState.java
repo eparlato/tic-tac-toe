@@ -1,5 +1,5 @@
 package it.eparlato.tictactoe;
 
 public enum GameState {
-    NEW_GAME, WAITING_NEXT_PLAYER, NO_CHANGES
+    NEW_GAME, PLAYER_EXECUTED_ACTION, PLAYER_COULD_NOT_EXECUTE_ACTION
 }

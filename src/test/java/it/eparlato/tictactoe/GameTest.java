@@ -31,16 +31,16 @@ class GameTest {
     }
 
     @Test
-    void waits_for_next_player_when_a_field_is_taken_on_the_board() {
+    void sets_a_state_when_a_field_is_taken_on_the_board() {
         when(board.state()).thenReturn(BoardState.FIELD_TAKEN);
 
         game.takeField(FIELD_COORDINATES);
 
-        assertThat(game.state()).isEqualTo(GameState.WAITING_NEXT_PLAYER);
+        assertThat(game.state()).isEqualTo(GameState.PLAYER_EXECUTED_ACTION);
     }
 
     @Test
-    void has_no_changes_if_a_field_is_already_taken_on_the_board() {
+    void sets_a_state_when_a_field_is_already_taken_on_the_board() {
 
         when(board.state())
                 .thenReturn(BoardState.FIELD_TAKEN)
@@ -49,6 +49,6 @@ class GameTest {
         game.takeField(FIELD_COORDINATES);
         game.takeField(FIELD_COORDINATES);
 
-        assertThat(game.state()).isEqualTo(GameState.NO_CHANGES);
+        assertThat(game.state()).isEqualTo(GameState.PLAYER_COULD_NOT_EXECUTE_ACTION);
     }
 }
