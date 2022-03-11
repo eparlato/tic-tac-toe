@@ -9,6 +9,7 @@ import static org.mockito.Mockito.*;
 class GameTest {
     private Board board = mock(Board.class);
     private Game game;
+    public static final FieldCoordinates FIELD_COORDINATES = new FieldCoordinates(0, 0);
 
     @BeforeEach
     void setUp() {
@@ -22,23 +23,32 @@ class GameTest {
 
     @Test
     void orchestrates_take_field_flow() {
-        FieldCoordinates fieldCoordinates = new FieldCoordinates(0, 0);
-
         when(board.state()).thenReturn(BoardState.FIELD_TAKEN);
 
-        game.takeField(fieldCoordinates);
+        game.takeField(FIELD_COORDINATES);
 
-        verify(board).takeField(fieldCoordinates);
+        verify(board).takeField(FIELD_COORDINATES);
     }
 
     @Test
     void waits_for_next_player_when_a_field_is_taken_on_the_board() {
-        FieldCoordinates fieldCoordinates = new FieldCoordinates(0, 0);
-
         when(board.state()).thenReturn(BoardState.FIELD_TAKEN);
 
-        game.takeField(fieldCoordinates);
+        game.takeField(FIELD_COORDINATES);
 
         assertThat(game.state()).isEqualTo(GameState.WAITING_NEXT_PLAYER);
+    }
+
+    @Test
+    void has_no_changes_if_a_field_is_already_taken_on_the_board() {
+
+        when(board.state())
+                .thenReturn(BoardState.FIELD_TAKEN)
+                .thenReturn(BoardState.FIELD_ALREADY_TAKEN);
+
+        game.takeField(FIELD_COORDINATES);
+        game.takeField(FIELD_COORDINATES);
+
+        assertThat(game.state()).isEqualTo(GameState.NO_CHANGES);
     }
 }

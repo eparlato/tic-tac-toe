@@ -16,6 +16,10 @@ public class Game
     public void takeField(FieldCoordinates fieldCoordinates) {
         board.takeField(fieldCoordinates);
 
+        if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
+           state = GameState.NO_CHANGES;
+        }
+
         if (board.state().equals(BoardState.FIELD_TAKEN)) {
             state = GameState.WAITING_NEXT_PLAYER;
         }
