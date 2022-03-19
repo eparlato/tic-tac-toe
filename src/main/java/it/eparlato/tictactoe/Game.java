@@ -6,7 +6,7 @@ package it.eparlato.tictactoe;
  */
 public class Game
 {
-    private GameState state = GameState.NEW_GAME;
+    private GameState state = GameState.NEW;
     private Board board;
     private Player currentPlayer = Player.CROSS;
 
@@ -18,12 +18,12 @@ public class Game
         board.takeField(fieldCoordinates);
 
         if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
-           state = GameState.PLAYER_COULD_NOT_EXECUTE_ACTION;
+           state = GameState.REPEATING;
         }
 
         if (board.state().equals(BoardState.FIELD_TAKEN)) {
             switchPlayer();
-            state = GameState.PLAYER_EXECUTED_ACTION;
+            state = GameState.PROCEEDING;
         }
     }
 

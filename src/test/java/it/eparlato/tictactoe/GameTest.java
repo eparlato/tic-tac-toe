@@ -18,7 +18,7 @@ class GameTest {
 
     @Test
     void starts_with_a_new_game_state() {
-        assertThat(game.state()).isEqualTo(GameState.NEW_GAME);
+        assertThat(game.state()).isEqualTo(GameState.NEW);
     }
 
     @Test
@@ -36,7 +36,7 @@ class GameTest {
 
         game.takeField(FIELD_COORDINATES);
 
-        assertThat(game.state()).isEqualTo(GameState.PLAYER_EXECUTED_ACTION);
+        assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
     }
 
     @Test
@@ -49,7 +49,7 @@ class GameTest {
         game.takeField(FIELD_COORDINATES);
         game.takeField(FIELD_COORDINATES);
 
-        assertThat(game.state()).isEqualTo(GameState.PLAYER_COULD_NOT_EXECUTE_ACTION);
+        assertThat(game.state()).isEqualTo(GameState.REPEATING);
     }
 
     @Test
