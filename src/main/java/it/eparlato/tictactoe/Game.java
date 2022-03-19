@@ -15,7 +15,7 @@ public class Game
     }
 
     public void takeField(FieldCoordinates fieldCoordinates) {
-        board.takeField(fieldCoordinates);
+        board.takeField(fieldCoordinates, currentPlayer);
 
         if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
            state = GameState.REPEATING;

@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class GameTest {
-    private Board board = mock(Board.class);
+    private final Board board = mock(Board.class);
     private Game game;
     public static final FieldCoordinates FIELD_COORDINATES = new FieldCoordinates(0, 0);
 
@@ -27,7 +27,7 @@ class GameTest {
 
         game.takeField(FIELD_COORDINATES);
 
-        verify(board).takeField(FIELD_COORDINATES);
+        verify(board).takeField(FIELD_COORDINATES, Player.CROSS);
     }
 
     @Test
