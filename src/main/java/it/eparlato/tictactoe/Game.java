@@ -19,19 +19,20 @@ public class Game
     public void takeField(FieldCoordinates fieldCoordinates) {
         board.takeField(fieldCoordinates, currentPlayer);
 
-        if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
+        referee.check(board);
+
+        RefereeEvaluation refereeEvaluation = referee.evaluation();
+
+        if (refereeEvaluation.equals(RefereeEvaluation.REPEAT)) {
            state = GameState.REPEATING;
            return;
         }
 
-        if (board.state().equals(BoardState.FIELD_TAKEN)) {
+        if (refereeEvaluation.equals(RefereeEvaluation.CONTINUE)) {
             switchPlayer();
             state = GameState.PROCEEDING;
         }
 
-        referee.check(board);
-
-        RefereeEvaluation refereeEvaluation = referee.evaluation();
 
         if (refereeEvaluation.equals(RefereeEvaluation.ALL_FIELDS_TAKEN)) {
             state = GameState.GAME_OVER_DRAW;
