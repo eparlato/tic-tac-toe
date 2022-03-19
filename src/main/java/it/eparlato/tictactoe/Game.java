@@ -29,6 +29,8 @@ public class Game
             state = GameState.PROCEEDING;
         }
 
+        referee.check(board);
+
         RefereeEvaluation refereeEvaluation = referee.evaluation();
 
         if (refereeEvaluation.equals(RefereeEvaluation.ALL_FIELDS_TAKEN)) {

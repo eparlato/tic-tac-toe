@@ -30,6 +30,7 @@ class GameTest {
         game.takeField(FIELD_COORDINATES);
 
         verify(board).takeField(FIELD_COORDINATES, Player.CROSS);
+        verify(referee).check(board);
     }
 
     @Test
