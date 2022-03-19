@@ -28,7 +28,7 @@ public class Game
            return;
         }
 
-        if (refereeEvaluation.equals(RefereeEvaluation.CONTINUE)) {
+        if (refereeEvaluation.equals(RefereeEvaluation.PROCEED)) {
             switchPlayer();
             state = GameState.PROCEEDING;
         }

@@ -24,7 +24,7 @@ class GameTest {
 
     @Test
     void orchestrates_take_field_flow() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.CONTINUE);
+        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
 
         game.takeField(FIELD_COORDINATES);
 
@@ -33,17 +33,18 @@ class GameTest {
     }
 
     @Test
-    void sets_a_state_when_a_field_is_taken_on_the_board() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.CONTINUE);
+    void sets_state_to_proceeding_when_referee_says_proceed() {
+        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
 
         game.takeField(FIELD_COORDINATES);
 
         assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
     }
 
+
     @Test
-    void sets_a_state_when_a_field_is_already_taken_on_the_board() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.CONTINUE).thenReturn(RefereeEvaluation.REPEAT);
+    void sets_state_to_repeating_when_referee_says_proceed() {
+        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED).thenReturn(RefereeEvaluation.REPEAT);
 
         game.takeField(FIELD_COORDINATES);
         game.takeField(FIELD_COORDINATES);
@@ -52,10 +53,10 @@ class GameTest {
     }
 
     @Test
-    void switches_player_when_a_field_is_taken_on_the_board() {
+    void switches_player_when_referee_says_proceeding() {
         FieldCoordinates differentCoordinates = new FieldCoordinates(0, 1);
 
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.CONTINUE);
+        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
 
         game.takeField(FIELD_COORDINATES);
 
@@ -67,7 +68,7 @@ class GameTest {
     }
 
     @Test
-    void do_not_switch_player_if_a_field_is_already_taken_on_the_board() {
+    void do_not_switch_player_if_referee_says_repeat() {
         when(referee.evaluation()).thenReturn(RefereeEvaluation.REPEAT);
 
         game.takeField(FIELD_COORDINATES);
@@ -76,7 +77,7 @@ class GameTest {
     }
 
     @Test
-    void sets_state_to_draw_game_over_when_referee_tells_that_all_fields_have_been_taken_on_a_board() {
+    void sets_state_to_draw_game_over_when_referee_says_all_fields_have_been_taken() {
         when(referee.evaluation()).thenReturn(RefereeEvaluation.ALL_FIELDS_TAKEN);
 
         game.takeField(FIELD_COORDINATES);
@@ -84,13 +85,5 @@ class GameTest {
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
     }
 
-    @Test
-    void sets_state_to_proceeding_when_referee_says_proceed() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.CONTINUE);
-
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
-    }
 
 }
