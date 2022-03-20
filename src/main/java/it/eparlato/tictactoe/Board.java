@@ -10,7 +10,8 @@ public class Board {
     };
 
     public void takeField(FieldCoordinates fieldCoordinates, Mark playerMark) {
-        throw new UnsupportedOperationException("Must be implemented");
+        content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()] = playerMark;
+        state = BoardState.FIELD_TAKEN;
     }
 
     public BoardState state() {
