@@ -1,4 +1,6 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.referee;
+
+import it.eparlato.tictactoe.Board;
 
 public class Referee {
 

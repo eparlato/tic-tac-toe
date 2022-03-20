@@ -1,5 +1,7 @@
 package it.eparlato.tictactoe;
 
+import it.eparlato.tictactoe.referee.Referee;
+import it.eparlato.tictactoe.referee.RefereeEvaluation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

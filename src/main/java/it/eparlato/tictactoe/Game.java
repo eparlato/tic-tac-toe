@@ -1,5 +1,8 @@
 package it.eparlato.tictactoe;
 
+import it.eparlato.tictactoe.referee.Referee;
+import it.eparlato.tictactoe.referee.RefereeEvaluation;
+
 public class Game
 {
     private final Board board;
@@ -22,19 +25,19 @@ public class Game
         refereeEvaluation.applyOn(this);
     }
 
-    private void gameOverDraw() {
+    public void gameOverDraw() {
         state = GameState.GAME_OVER_DRAW;
     }
 
-    private void proceed() {
+    public void proceed() {
         state = GameState.PROCEEDING;
     }
 
-    private void repeat() {
+    public void repeat() {
         state = GameState.REPEATING;
     }
 
-    private void switchPlayer() {
+    public void switchPlayer() {
         currentPlayer = currentPlayer == Player.CROSS ? Player.NOUGHT : Player.CROSS;
     }
 
