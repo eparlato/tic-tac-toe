@@ -8,7 +8,7 @@ public class Game
     private final Board board;
     private final Referee referee;
     private GameState state = GameState.NEW;
-    private Player currentPlayer = Player.CROSS;
+    private Mark currentPlayer = Mark.CROSS;
 
     public Game(Board board, Referee referee) {
         this.board = board;
@@ -38,7 +38,7 @@ public class Game
     }
 
     public void switchPlayer() {
-        currentPlayer = currentPlayer == Player.CROSS ? Player.NOUGHT : Player.CROSS;
+        currentPlayer = currentPlayer == Mark.CROSS ? Mark.NOUGHT : Mark.CROSS;
     }
 
     public GameState state() {

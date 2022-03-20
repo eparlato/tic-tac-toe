@@ -3,13 +3,13 @@ package it.eparlato.tictactoe;
 
 public class Board {
     private BoardState state = BoardState.EMPTY;
-    private String[][] content = {
-            {"-", "-", "-"},
-            {"-", "-", "-"},
-            {"-", "-", "-"}
+    private Mark[][] content = {
+            {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+            {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+            {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY}
     };
 
-    public void takeField(FieldCoordinates fieldCoordinates, Player player) {
+    public void takeField(FieldCoordinates fieldCoordinates, Mark playerMark) {
         throw new UnsupportedOperationException("Must be implemented");
     }
 
@@ -17,7 +17,7 @@ public class Board {
         return state;
     }
 
-    public String[][] content() {
+    public Mark[][] content() {
         return content;
     }
 }

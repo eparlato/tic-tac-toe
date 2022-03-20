@@ -15,11 +15,11 @@ class BoardTest {
 
     @Test
     void is_empty_when_created() {
-        String[][] emptyBoardContent =
+        Mark[][] emptyBoardContent =
                     {
-                        {"-", "-", "-"},
-                        {"-", "-", "-"},
-                        {"-", "-", "-"}
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY}
                     };
 
         assertThat(board.state()).isEqualTo(BoardState.EMPTY);
