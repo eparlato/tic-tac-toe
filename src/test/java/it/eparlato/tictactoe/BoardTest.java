@@ -40,4 +40,21 @@ class BoardTest {
         assertThat(board.state()).isEqualTo(BoardState.FIELD_TAKEN);
         assertThat(board.content()).isEqualTo(boardWithUpperLeftFieldMarkWithCross);
     }
+
+    @Test
+    void do_not_mark_a_field_already_taken() {
+        Mark[][] boardWithLowerLeftFieldMarkWithNought =
+                {
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.NOUGHT, Mark.EMPTY}
+                };
+
+
+        board.takeField(new FieldCoordinates(2,1), Mark.NOUGHT);
+        board.takeField(new FieldCoordinates(2,1), Mark.CROSS);
+
+        assertThat(board.state()).isEqualTo(BoardState.FIELD_ALREADY_TAKEN);
+        assertThat(board.content()).isEqualTo(boardWithLowerLeftFieldMarkWithNought);
+    }
 }
