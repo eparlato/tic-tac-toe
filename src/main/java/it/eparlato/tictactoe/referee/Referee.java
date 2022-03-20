@@ -1,15 +1,23 @@
 package it.eparlato.tictactoe.referee;
 
 import it.eparlato.tictactoe.Board;
+import it.eparlato.tictactoe.BoardState;
 
 public class Referee {
+    private RefereeEvaluation evaluation;
 
     public void check(Board board) {
-        // TODO: if board has field not taken state then ...
-        // TODO: if board has field taken state then ...
+        if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
+           evaluation = new RepeatRefereeEvaluation();
+           return;
+        }
+
+        if (board.state().equals(BoardState.FIELD_TAKEN)) {
+            evaluation = new ProceedRefereeEvaluation();
+        }
     }
 
     public RefereeEvaluation evaluation() {
-        throw new UnsupportedOperationException("to be implemented");
+        return evaluation;
     }
 }
