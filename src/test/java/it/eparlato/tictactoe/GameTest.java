@@ -24,66 +24,13 @@ class GameTest {
 
     @Test
     void orchestrates_take_field_flow() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
+        RefereeEvaluation refereeEvaluation = mock(RefereeEvaluation.class);
+        when(referee.evaluation()).thenReturn(refereeEvaluation);
 
         game.takeField(FIELD_COORDINATES);
 
-        verify(board).takeField(FIELD_COORDINATES, Player.CROSS);
         verify(referee).check(board);
+        verify(refereeEvaluation).applyOn(game);
     }
-
-    @Test
-    void sets_state_to_proceeding_when_referee_says_proceed() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
-
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
-    }
-
-
-    @Test
-    void sets_state_to_repeating_when_referee_says_proceed() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED).thenReturn(RefereeEvaluation.REPEAT);
-
-        game.takeField(FIELD_COORDINATES);
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.state()).isEqualTo(GameState.REPEATING);
-    }
-
-    @Test
-    void switches_player_when_referee_says_proceeding() {
-        FieldCoordinates differentCoordinates = new FieldCoordinates(0, 1);
-
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.PROCEED);
-
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.currentPlayer()).isEqualTo(Player.NOUGHT);
-
-        game.takeField(differentCoordinates);
-
-        assertThat(game.currentPlayer()).isEqualTo(Player.CROSS);
-    }
-
-    @Test
-    void do_not_switch_player_if_referee_says_repeat() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.REPEAT);
-
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.currentPlayer()).isEqualTo(Player.CROSS);
-    }
-
-    @Test
-    void sets_state_to_draw_game_over_when_referee_says_all_fields_have_been_taken() {
-        when(referee.evaluation()).thenReturn(RefereeEvaluation.ALL_FIELDS_TAKEN);
-
-        game.takeField(FIELD_COORDINATES);
-
-        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
-    }
-
 
 }

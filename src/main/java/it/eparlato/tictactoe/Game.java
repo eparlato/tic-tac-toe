@@ -1,9 +1,5 @@
 package it.eparlato.tictactoe;
 
-/**
- * Hello world!
- *
- */
 public class Game
 {
     private final Board board;
@@ -23,20 +19,7 @@ public class Game
 
         RefereeEvaluation refereeEvaluation = referee.evaluation();
 
-        if (refereeEvaluation.equals(RefereeEvaluation.REPEAT)) {
-            repeat();
-            return;
-        }
-
-        if (refereeEvaluation.equals(RefereeEvaluation.PROCEED)) {
-            switchPlayer();
-            proceed();
-            return;
-        }
-
-        if (refereeEvaluation.equals(RefereeEvaluation.ALL_FIELDS_TAKEN)) {
-            gameOverDraw();
-        }
+        refereeEvaluation.applyOn(this);
     }
 
     private void gameOverDraw() {
