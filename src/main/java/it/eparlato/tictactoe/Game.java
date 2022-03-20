@@ -44,8 +44,4 @@ public class Game
     public GameState state() {
         return state;
     }
-
-    public Player currentPlayer() {
-        return currentPlayer;
-    }
 }
