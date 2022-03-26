@@ -25,15 +25,31 @@ public class GameAcceptanceTest {
 
     @Test
     void there_are_two_players_in_the_game_X_and_O() {
-        GameSnapshot snapshot = game.snapshot();
         Player playerCross = new Player(Mark.CROSS);
         Player playerNought = new Player(Mark.NOUGHT);
 
-        assertThat(snapshot.currentPlayer()).isEqualTo(playerCross);
+        assertThat(getCurrentPlayer()).isEqualTo(playerCross);
 
         game.takeField(new FieldCoordinates(0,0));
-        snapshot = game.snapshot();
 
-        assertThat(snapshot.currentPlayer()).isEqualTo(playerNought);
+        assertThat(getCurrentPlayer()).isEqualTo(playerNought);
+    }
+
+    @Test
+    void a_player_can_take_a_field_if_not_already_taken() {
+        game.takeField(new FieldCoordinates(1,0));
+        Player aPlayer = getCurrentPlayer();
+
+        game.takeField(new FieldCoordinates(1,1));
+
+        Player aDifferentPlayer = getCurrentPlayer();
+
+        assertThat(aPlayer).isNotEqualTo(aDifferentPlayer);
+        assertThat(game.snapshot().gameState()).isEqualTo(GameState.PROCEEDING);
+    }
+
+    private Player getCurrentPlayer() {
+        GameSnapshot snapshot = game.snapshot();
+        return snapshot.currentPlayer();
     }
 }

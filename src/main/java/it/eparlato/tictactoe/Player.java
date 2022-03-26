@@ -22,6 +22,13 @@ public class Player {
     }
 
     @Override
+    public String toString() {
+        return "Player{" +
+                "playerMark=" + playerMark +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(playerMark);
     }
