@@ -50,4 +50,8 @@ public class Game
     public Player currentPlayer() {
         return currentPlayer;
     }
+
+    public GameSnapshot snapshot() {
+        return new GameSnapshot(board.content());
+    }
 }
