@@ -8,8 +8,8 @@ public class Game
     private final Board board;
     private final Referee referee;
     private GameState state = GameState.NEW;
-    private Player playerCross = new Player(Mark.CROSS);
-    private Player playerNought = new Player(Mark.NOUGHT);
+    private final Player playerCross = new Player(Mark.CROSS);
+    private final Player playerNought = new Player(Mark.NOUGHT);
     private Player currentPlayer = playerCross;
 
     public Game(Board board, Referee referee) {
@@ -45,5 +45,9 @@ public class Game
 
     public GameState state() {
         return state;
+    }
+
+    public Player currentPlayer() {
+        return currentPlayer;
     }
 }

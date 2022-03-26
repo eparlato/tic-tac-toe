@@ -35,4 +35,27 @@ class GameTest {
         verify(refereeEvaluation).applyOn(game);
     }
 
+    @Test
+    void switches_the_current_player() {
+
+        game.switchPlayer();
+
+        assertThat(game.currentPlayer()).isEqualTo(new Player(Mark.NOUGHT));
+
+        game.switchPlayer();
+
+        assertThat(game.currentPlayer()).isEqualTo(new Player((Mark.CROSS)));
+    }
+
+    @Test
+    void exposes_methods_that_change_its_state() {
+        game.gameOverDraw();
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
+
+        game.repeat();
+        assertThat(game.state()).isEqualTo(GameState.REPEATING);
+
+        game.proceed();
+        assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
+    }
 }

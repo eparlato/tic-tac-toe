@@ -1,5 +1,7 @@
 package it.eparlato.tictactoe;
 
+import java.util.Objects;
+
 public class Player {
     private Mark playerMark;
 
@@ -9,5 +11,18 @@ public class Player {
 
     public Mark mark() {
         return playerMark;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return playerMark == player.playerMark;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerMark);
     }
 }
