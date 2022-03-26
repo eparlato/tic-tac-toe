@@ -22,4 +22,18 @@ public class GameAcceptanceTest {
 
         assertThat(snapshot.boardContent()).isEqualTo(empty3x3Board);
     }
+
+    @Test
+    void there_are_two_players_in_the_game_X_and_O() {
+        GameSnapshot snapshot = game.snapshot();
+        Player playerCross = new Player(Mark.CROSS);
+        Player playerNought = new Player(Mark.NOUGHT);
+
+        assertThat(snapshot.currentPlayer()).isEqualTo(playerCross);
+
+        game.takeField(new FieldCoordinates(0,0));
+        snapshot = game.snapshot();
+
+        assertThat(snapshot.currentPlayer()).isEqualTo(playerNought);
+    }
 }
