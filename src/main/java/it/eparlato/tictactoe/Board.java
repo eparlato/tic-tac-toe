@@ -9,14 +9,14 @@ public class Board {
             {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY}
     };
 
-    public void takeField(FieldCoordinates fieldCoordinates, Mark playerMark) {
+    public void takeField(FieldCoordinates fieldCoordinates, Player player) {
         if( isFieldNotEmpty(fieldCoordinates) &&
-                isFieldAlreadyTakenByTheOtherPlayer(fieldCoordinates, playerMark)) {
+                isFieldAlreadyTakenByTheOtherPlayer(fieldCoordinates, player.mark())) {
             state = BoardState.FIELD_ALREADY_TAKEN;
             return;
         }
 
-        content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()] = playerMark;
+        content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()] = player.mark();
         state = BoardState.FIELD_TAKEN;
     }
 

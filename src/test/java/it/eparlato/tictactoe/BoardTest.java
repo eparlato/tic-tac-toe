@@ -35,7 +35,7 @@ class BoardTest {
                         {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY}
                 };
 
-        board.takeField(new FieldCoordinates(0, 0), Mark.CROSS);
+        board.takeField(new FieldCoordinates(0, 0), new Player(Mark.CROSS));
 
         assertThat(board.state()).isEqualTo(BoardState.FIELD_TAKEN);
         assertThat(board.content()).isEqualTo(boardWithUpperLeftFieldMarkWithCross);
@@ -51,8 +51,8 @@ class BoardTest {
                 };
 
 
-        board.takeField(new FieldCoordinates(2,1), Mark.NOUGHT);
-        board.takeField(new FieldCoordinates(2,1), Mark.CROSS);
+        board.takeField(new FieldCoordinates(2,1), new Player(Mark.NOUGHT));
+        board.takeField(new FieldCoordinates(2,1), new Player(Mark.CROSS));
 
         assertThat(board.state()).isEqualTo(BoardState.FIELD_ALREADY_TAKEN);
         assertThat(board.content()).isEqualTo(boardWithLowerLeftFieldMarkWithNought);
