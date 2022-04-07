@@ -48,6 +48,17 @@ public class GameAcceptanceTest {
         assertThat(game.snapshot().gameState()).isEqualTo(GameState.PROCEEDING);
     }
 
+    @Test
+    void a_game_is_over_when_all_fields_in_a_row_are_taken_by_a_player() {
+        game.takeField(new FieldCoordinates(1, 0));
+        game.takeField(new FieldCoordinates(2, 0));
+        game.takeField(new FieldCoordinates(1, 1));
+        game.takeField(new FieldCoordinates(2, 1));
+        game.takeField(new FieldCoordinates(1, 2));
+
+        assertThat(game.snapshot().gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+    }
+
     private Player getCurrentPlayer() {
         GameSnapshot snapshot = game.snapshot();
         return snapshot.currentPlayer();
