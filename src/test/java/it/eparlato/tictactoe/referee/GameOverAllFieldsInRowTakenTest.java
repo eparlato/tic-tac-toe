@@ -22,7 +22,7 @@ class GameOverAllFieldsInRowTakenTest {
 
         when(board.content()).thenReturn(boardContentWithRowTakenByPlayerCross);
 
-        assertThat(rule.isSatisfiedBy(board)).isEqualTo(true);
+        assertThat(rule.isSatisfiedBy(board)).isTrue();
     }
 
     @Test
@@ -35,7 +35,7 @@ class GameOverAllFieldsInRowTakenTest {
 
         when(board.content()).thenReturn(boardContentWithoutRowsTakenByAnyone);
 
-        assertThat(rule.isSatisfiedBy(board)).isEqualTo(false);
+        assertThat(rule.isSatisfiedBy(board)).isFalse();
     }
 
     @Test

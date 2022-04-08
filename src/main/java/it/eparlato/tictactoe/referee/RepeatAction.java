@@ -5,6 +5,7 @@ import it.eparlato.tictactoe.BoardState;
 import it.eparlato.tictactoe.Game;
 
 public class RepeatAction implements BoardGameRule {
+    @Override
     public boolean isSatisfiedBy(Board board) {
         return board.state().equals(BoardState.FIELD_ALREADY_TAKEN);
     }

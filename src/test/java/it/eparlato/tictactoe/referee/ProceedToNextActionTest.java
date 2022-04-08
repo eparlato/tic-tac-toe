@@ -17,14 +17,14 @@ class ProceedToNextActionTest {
     void is_satisfied_by_a_board_where_a_field_has_been_taken() {
         when(board.state()).thenReturn(BoardState.FIELD_TAKEN);
 
-        assertThat(rule.isSatisfiedBy(board)).isEqualTo(true);
+        assertThat(rule.isSatisfiedBy(board)).isTrue();
     }
 
     @Test
     void is_not_satisfied_by_a_board_where_a_field_has_not_been_taken() {
         when(board.state()).thenReturn(BoardState.FIELD_ALREADY_TAKEN);
 
-        assertThat(rule.isSatisfiedBy(board)).isEqualTo(false);
+        assertThat(rule.isSatisfiedBy(board)).isFalse();
     }
 
     @Test

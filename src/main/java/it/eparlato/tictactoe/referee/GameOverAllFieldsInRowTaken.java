@@ -5,6 +5,7 @@ import it.eparlato.tictactoe.Game;
 import it.eparlato.tictactoe.Mark;
 
 public class GameOverAllFieldsInRowTaken implements BoardGameRule {
+    @Override
     public boolean isSatisfiedBy(Board board) {
         Mark[][] boardContent = board.content();
 

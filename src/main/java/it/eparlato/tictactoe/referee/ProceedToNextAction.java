@@ -5,6 +5,7 @@ import it.eparlato.tictactoe.BoardState;
 import it.eparlato.tictactoe.Game;
 
 public class ProceedToNextAction implements BoardGameRule {
+    @Override
     public boolean isSatisfiedBy(Board board) {
         return board.state().equals(BoardState.FIELD_TAKEN);
     }
