@@ -6,7 +6,7 @@ credits to [Kata-log](https://kata-log.rocks/tic-tac-toe-kata)
 
 In random order
 
-- [ ] a game is over when all fields in a row are taken by a player
+- [X] a game is over when all fields in a row are taken by a player
 - [ ] players take turns taking fields until the game is over
 - [ ] a game is over when all fields in a diagonal are taken by a player
 - [ ] a game is over when all fields are taken

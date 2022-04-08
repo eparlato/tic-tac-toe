@@ -53,17 +53,17 @@ public class GameAcceptanceTest {
 
         assertThat(getCurrentPlayer()).isEqualTo(playerCross);
 
-        game.takeField(new FieldCoordinates(0,0));
+        takeFieldAtCoordinates(0, 0);
 
         assertThat(getCurrentPlayer()).isEqualTo(playerNought);
     }
 
     @Test
     void a_player_can_take_a_field_if_not_already_taken() {
-        game.takeField(new FieldCoordinates(1,0));
+        takeFieldAtCoordinates(1, 0);
         Player aPlayer = getCurrentPlayer();
 
-        game.takeField(new FieldCoordinates(1,1));
+        takeFieldAtCoordinates(1, 1);
 
         Player aDifferentPlayer = getCurrentPlayer();
 
@@ -73,11 +73,11 @@ public class GameAcceptanceTest {
 
     @Test
     void a_game_is_over_when_all_fields_in_a_row_are_taken_by_a_player() {
-        game.takeField(new FieldCoordinates(1, 0));
-        game.takeField(new FieldCoordinates(2, 0));
-        game.takeField(new FieldCoordinates(1, 1));
-        game.takeField(new FieldCoordinates(2, 1));
-        game.takeField(new FieldCoordinates(1, 2));
+        takeFieldAtCoordinates(1, 0);
+        takeFieldAtCoordinates(2, 0);
+        takeFieldAtCoordinates(1, 1);
+        takeFieldAtCoordinates(2, 1);
+        takeFieldAtCoordinates(1, 2);
 
         assertThat(game.snapshot().gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
     }
@@ -93,6 +93,10 @@ public class GameAcceptanceTest {
         gameFlowRules.add(new ProceedToNextAction());
         gameFlowRules.add(new RepeatAction());
         return gameFlowRules;
+    }
+
+    private void takeFieldAtCoordinates(int rowIndex, int columnIndex) {
+        game.takeField(new FieldCoordinates(rowIndex, columnIndex));
     }
 
     private Player getCurrentPlayer() {
