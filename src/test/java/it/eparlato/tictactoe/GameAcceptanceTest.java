@@ -21,6 +21,8 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class GameAcceptanceTest {
     private Game game;
+    public static final Player PLAYER_CROSS = new Player(Mark.CROSS);
+    public static final Player PLAYER_NOUGHT = new Player(Mark.NOUGHT);
 
     @BeforeEach
     void setUp() {
@@ -48,14 +50,12 @@ public class GameAcceptanceTest {
 
     @Test
     void there_are_two_players_in_the_game_X_and_O() {
-        Player playerCross = new Player(Mark.CROSS);
-        Player playerNought = new Player(Mark.NOUGHT);
 
-        assertThat(getCurrentPlayer()).isEqualTo(playerCross);
+        assertThat(getCurrentPlayer()).isEqualTo(PLAYER_CROSS);
 
         takeFieldAtCoordinates(0, 0);
 
-        assertThat(getCurrentPlayer()).isEqualTo(playerNought);
+        assertThat(getCurrentPlayer()).isEqualTo(PLAYER_NOUGHT);
     }
 
     @Test
@@ -80,6 +80,7 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(1, 2);
 
         assertThat(game.snapshot().gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+        assertThat(game.snapshot().currentPlayer()).isEqualTo(PLAYER_CROSS);
     }
 
     private List<BoardGameRule> setupGameOverRules() {
