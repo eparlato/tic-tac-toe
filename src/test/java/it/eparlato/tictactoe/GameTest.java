@@ -1,7 +1,7 @@
 package it.eparlato.tictactoe;
 
-import it.eparlato.tictactoe.referee.Referee;
 import it.eparlato.tictactoe.referee.BoardGameRule;
+import it.eparlato.tictactoe.referee.Referee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ class GameTest {
     @Test
     void orchestrates_take_field_flow() {
         BoardGameRule boardGameRule = mock(BoardGameRule.class);
-        when(referee.evaluation()).thenReturn(boardGameRule);
+        when(referee.validGameRule()).thenReturn(boardGameRule);
 
         game.takeField(FIELD_COORDINATES);
 

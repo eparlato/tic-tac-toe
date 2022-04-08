@@ -1,14 +1,27 @@
 package it.eparlato.tictactoe;
 
-import it.eparlato.tictactoe.referee.Referee;
+import it.eparlato.tictactoe.referee.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class GameAcceptanceTest {
-    private final Board board = new Board();
-    private final Referee referee = new Referee();
-    private final Game game = new Game(board, referee);
+    private Game game;
+
+    @BeforeEach
+    void setUp() {
+        Board board = new Board();
+
+        List<BoardGameRule> gameOverRules = setupGameOverRules();
+        List<BoardGameRule> gameFlowRules = setupGameFlowRules();
+        Referee referee = new Referee(gameOverRules, gameFlowRules);
+
+        game = new Game(board, referee);
+    }
 
     @Test
     void a_game_has_nine_fields_in_a_3x3_grid() {
@@ -57,6 +70,19 @@ public class GameAcceptanceTest {
         game.takeField(new FieldCoordinates(1, 2));
 
         assertThat(game.snapshot().gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+    }
+
+    private List<BoardGameRule> setupGameOverRules() {
+        List<BoardGameRule> gameOverRules = new ArrayList<>();
+        gameOverRules.add(new GameOverAllFieldsInRowTaken());
+        return gameOverRules;
+    }
+
+    private List<BoardGameRule> setupGameFlowRules() {
+        List<BoardGameRule> gameFlowRules = new ArrayList<>();
+        gameFlowRules.add(new ProceedToNextAction());
+        gameFlowRules.add(new RepeatAction());
+        return gameFlowRules;
     }
 
     private Player getCurrentPlayer() {

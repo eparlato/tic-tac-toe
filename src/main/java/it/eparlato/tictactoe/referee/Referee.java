@@ -1,47 +1,36 @@
 package it.eparlato.tictactoe.referee;
 
 import it.eparlato.tictactoe.Board;
-import it.eparlato.tictactoe.BoardState;
-import it.eparlato.tictactoe.Mark;
+
+import java.util.List;
 
 public class Referee {
-    private BoardGameRule boardGameRule;
+    private BoardGameRule validGameRule;
+    private final List<BoardGameRule> gameOverRules;
+    private final List<BoardGameRule> gameFlowRules;
+
+    public Referee(List<BoardGameRule> gameOverRules, List<BoardGameRule> gameFlowRules) {
+        this.gameOverRules = gameOverRules;
+        this.gameFlowRules = gameFlowRules;
+    }
 
     public void check(Board board) {
-        if (isARowTakenByPlayer(board.content())) {
-            boardGameRule = new GameOverAllFieldsInRowTaken();
-            return;
-        }
-
-        if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
-           boardGameRule = new RepeatAction();
-           return;
-        }
-
-        if (board.state().equals(BoardState.FIELD_TAKEN)) {
-            boardGameRule = new ProceedToNextAction();
-        }
-    }
-
-    private boolean isARowTakenByPlayer(Mark[][] boardContent) {
-
-        for (Mark[] row : boardContent) {
-            if (row[0].equals(Mark.EMPTY) ||
-                    row[1].equals(Mark.EMPTY) ||
-                    row[2].equals(Mark.EMPTY)) {
-                continue;
-            }
-
-            if (row[0].equals(row[1]) &&
-                    row[0].equals(row[2])) {
-                return true;
+        for (BoardGameRule gameOverRule : gameOverRules) {
+            if (gameOverRule.isSatisfiedBy(board)) {
+                this.validGameRule = gameOverRule;
+                return;
             }
         }
 
-        return false;
+        for (BoardGameRule gameFlowRule : gameFlowRules) {
+            if (gameFlowRule.isSatisfiedBy(board)) {
+                this.validGameRule = gameFlowRule;
+                return;
+            }
+        }
     }
 
-    public BoardGameRule evaluation() {
-        return boardGameRule;
+    public BoardGameRule validGameRule() {
+        return validGameRule;
     }
 }
