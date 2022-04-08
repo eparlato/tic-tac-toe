@@ -12,5 +12,5 @@ In random order
 - [ ] a game is over when all fields are taken
 - [X] there are two players in the game (X and O)
 - [X] game has nine fields in a 3x3 grid
-- [ ] a game is over when all fields in a column are taken by a player
+- [X] a game is over when all fields in a column are taken by a player
 - [X] a player can take a field if not already taken

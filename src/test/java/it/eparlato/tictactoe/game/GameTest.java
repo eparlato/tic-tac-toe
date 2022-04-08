@@ -61,7 +61,10 @@ class GameTest {
         game.proceed();
         assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
 
-        game.gameOverAllFieldsTakenByPlayer();
+        game.gameOverRowTakenByPlayer();
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+
+        game.gameOverColumnTakenByPlayer();
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN);
     }
 }

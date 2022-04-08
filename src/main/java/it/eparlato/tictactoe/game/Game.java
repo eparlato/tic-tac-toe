@@ -42,8 +42,12 @@ public class Game
         state = GameState.REPEATING;
     }
 
-    public void gameOverAllFieldsTakenByPlayer() {
+    public void gameOverRowTakenByPlayer() {
         state = GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW;
+    }
+
+    public void gameOverColumnTakenByPlayer() {
+        state = GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN;
     }
 
     public void switchPlayer() {

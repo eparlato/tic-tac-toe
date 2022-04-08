@@ -16,10 +16,7 @@ public class GameOverAllFieldsInRowTaken implements BoardGameRule {
                 continue;
             }
 
-            if (row[0].equals(row[1]) &&
-                    row[0].equals(row[2])) {
-                return true;
-            }
+            return row[0].equals(row[1]) && row[0].equals(row[2]);
         }
 
         return false;
@@ -27,6 +24,6 @@ public class GameOverAllFieldsInRowTaken implements BoardGameRule {
 
     @Override
     public void applyOn(Game game) {
-        game.gameOverAllFieldsTakenByPlayer();
+        game.gameOverRowTakenByPlayer();
     }
 }

@@ -7,10 +7,7 @@ import it.eparlato.tictactoe.game.Game;
 import it.eparlato.tictactoe.game.GameSnapshot;
 import it.eparlato.tictactoe.game.GameState;
 import it.eparlato.tictactoe.game.Player;
-import it.eparlato.tictactoe.rules.BoardGameRule;
-import it.eparlato.tictactoe.rules.GameOverAllFieldsInRowTaken;
-import it.eparlato.tictactoe.rules.ProceedToNextAction;
-import it.eparlato.tictactoe.rules.RepeatAction;
+import it.eparlato.tictactoe.rules.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -79,13 +76,29 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(2, 1);
         takeFieldAtCoordinates(1, 2);
 
-        assertThat(game.snapshot().gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
-        assertThat(game.snapshot().currentPlayer()).isEqualTo(PLAYER_CROSS);
+        GameSnapshot snapshot = game.snapshot();
+        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_CROSS);
+    }
+
+    @Test
+    void a_game_is_over_when_all_fields_in_a_column_are_taken_by_a_player() {
+        takeFieldAtCoordinates(0, 1);
+        takeFieldAtCoordinates(0, 0);
+        takeFieldAtCoordinates(1, 1);
+        takeFieldAtCoordinates(1, 0);
+        takeFieldAtCoordinates(2, 2);
+        takeFieldAtCoordinates(2, 0);
+
+        GameSnapshot snapshot = game.snapshot();
+        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN);
+        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_NOUGHT);
     }
 
     private List<BoardGameRule> setupGameOverRules() {
         List<BoardGameRule> gameOverRules = new ArrayList<>();
         gameOverRules.add(new GameOverAllFieldsInRowTaken());
+        gameOverRules.add(new GameOverAllFieldsInColumnTaken());
         return gameOverRules;
     }
 

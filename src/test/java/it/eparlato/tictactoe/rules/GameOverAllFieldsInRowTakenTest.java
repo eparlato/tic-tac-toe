@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class GameOverAllFieldsInRowTakenTest {
-    private final GameOverAllFieldsInRowTaken rule = new GameOverAllFieldsInRowTaken();
     private final Board board = mock(Board.class);
+    private final GameOverAllFieldsInRowTaken rule = new GameOverAllFieldsInRowTaken();
 
     @Test
     void is_satisfied_by_a_board_with_one_row_taken_by_a_player() {
@@ -44,6 +44,6 @@ class GameOverAllFieldsInRowTakenTest {
 
         rule.applyOn(game);
 
-        verify(game).gameOverAllFieldsTakenByPlayer();
+        verify(game).gameOverRowTakenByPlayer();
     }
 }
