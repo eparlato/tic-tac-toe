@@ -1,31 +1,42 @@
 package it.eparlato.tictactoe.referee;
 
+import it.eparlato.tictactoe.Board;
+import it.eparlato.tictactoe.BoardState;
 import it.eparlato.tictactoe.Game;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 class ProceedToNextActionTest {
     private final Game game = mock(Game.class);
-    private BoardGameRule evaluation;
+    private final Board board = mock(Board.class);
+    private final ProceedToNextAction rule = new ProceedToNextAction();
 
-    @BeforeEach
-    void setUp() {
-        evaluation = new ProceedToNextAction();
+    @Test
+    void is_satisfied_by_a_board_where_a_field_has_been_taken() {
+        when(board.state()).thenReturn(BoardState.FIELD_TAKEN);
+
+        assertThat(rule.isSatisfiedBy(board)).isEqualTo(true);
+    }
+
+    @Test
+    void is_not_satisfied_by_a_board_where_a_field_has_not_been_taken() {
+        when(board.state()).thenReturn(BoardState.FIELD_ALREADY_TAKEN);
+
+        assertThat(rule.isSatisfiedBy(board)).isEqualTo(false);
     }
 
     @Test
     void tells_game_to_proceed() {
-        evaluation.applyOn(game);
+        rule.applyOn(game);
 
         verify(game).proceed();
     }
 
     @Test
     void tells_game_to_switch_current_player() {
-        evaluation.applyOn(game);
+        rule.applyOn(game);
 
         verify(game).switchPlayer();
     }
