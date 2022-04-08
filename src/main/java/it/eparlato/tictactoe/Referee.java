@@ -1,6 +1,7 @@
-package it.eparlato.tictactoe.referee;
+package it.eparlato.tictactoe;
 
-import it.eparlato.tictactoe.Board;
+import it.eparlato.tictactoe.board.Board;
+import it.eparlato.tictactoe.rules.BoardGameRule;
 
 import java.util.List;
 

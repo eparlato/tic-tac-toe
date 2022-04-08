@@ -1,5 +1,6 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.board;
 
+import it.eparlato.tictactoe.game.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

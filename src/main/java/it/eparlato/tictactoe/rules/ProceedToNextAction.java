@@ -1,8 +1,8 @@
-package it.eparlato.tictactoe.referee;
+package it.eparlato.tictactoe.rules;
 
-import it.eparlato.tictactoe.Board;
-import it.eparlato.tictactoe.BoardState;
-import it.eparlato.tictactoe.Game;
+import it.eparlato.tictactoe.board.Board;
+import it.eparlato.tictactoe.board.BoardState;
+import it.eparlato.tictactoe.game.Game;
 
 public class ProceedToNextAction implements BoardGameRule {
     @Override

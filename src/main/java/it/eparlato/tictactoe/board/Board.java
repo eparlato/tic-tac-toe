@@ -1,5 +1,7 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.board;
 
+
+import it.eparlato.tictactoe.game.Player;
 
 public class Board {
     private BoardState state = BoardState.EMPTY;

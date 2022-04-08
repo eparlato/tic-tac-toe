@@ -1,6 +1,16 @@
 package it.eparlato.tictactoe;
 
-import it.eparlato.tictactoe.referee.*;
+import it.eparlato.tictactoe.board.Board;
+import it.eparlato.tictactoe.board.FieldCoordinates;
+import it.eparlato.tictactoe.board.Mark;
+import it.eparlato.tictactoe.game.Game;
+import it.eparlato.tictactoe.game.GameSnapshot;
+import it.eparlato.tictactoe.game.GameState;
+import it.eparlato.tictactoe.game.Player;
+import it.eparlato.tictactoe.rules.BoardGameRule;
+import it.eparlato.tictactoe.rules.GameOverAllFieldsInRowTaken;
+import it.eparlato.tictactoe.rules.ProceedToNextAction;
+import it.eparlato.tictactoe.rules.RepeatAction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

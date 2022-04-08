@@ -1,7 +1,10 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.game;
 
-import it.eparlato.tictactoe.referee.BoardGameRule;
-import it.eparlato.tictactoe.referee.Referee;
+import it.eparlato.tictactoe.Referee;
+import it.eparlato.tictactoe.board.Board;
+import it.eparlato.tictactoe.board.FieldCoordinates;
+import it.eparlato.tictactoe.board.Mark;
+import it.eparlato.tictactoe.rules.BoardGameRule;
 
 public class Game
 {

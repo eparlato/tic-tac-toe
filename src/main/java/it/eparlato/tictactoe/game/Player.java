@@ -1,4 +1,6 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.game;
+
+import it.eparlato.tictactoe.board.Mark;
 
 import java.util.Objects;
 

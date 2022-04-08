@@ -1,4 +1,4 @@
-package it.eparlato.tictactoe;
+package it.eparlato.tictactoe.board;
 
 public class FieldCoordinates {
     private final int rowIndex;
