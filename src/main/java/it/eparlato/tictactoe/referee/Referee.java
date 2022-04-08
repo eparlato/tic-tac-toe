@@ -8,7 +8,6 @@ public class Referee {
     private BoardGameRule boardGameRule;
 
     public void check(Board board) {
-        // RefereeEvaluation are in fact Board game conditions, or Board game Rules
         if (isARowTakenByPlayer(board.content())) {
             boardGameRule = new GameOverAllFieldsInRowTaken();
             return;
