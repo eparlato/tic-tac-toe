@@ -25,7 +25,7 @@ class RefereeTest {
 
         referee.check(board);
 
-        assertThat(referee.evaluation()).isInstanceOf(ProceedRefereeEvaluation.class);
+        assertThat(referee.evaluation()).isInstanceOf(ProceedToNextAction.class);
     }
 
     @Test
@@ -35,7 +35,7 @@ class RefereeTest {
 
         referee.check(board);
 
-        assertThat(referee.evaluation()).isInstanceOf(RepeatRefereeEvaluation.class);
+        assertThat(referee.evaluation()).isInstanceOf(RepeatAction.class);
     }
 
     @Test
@@ -50,6 +50,6 @@ class RefereeTest {
 
         referee.check(board);
 
-        assertThat(referee.evaluation()).isInstanceOf(GameOverAllFieldsInRowTakenByPlayerRefereeEvaluation.class);
+        assertThat(referee.evaluation()).isInstanceOf(GameOverAllFieldsInRowTaken.class);
     }
 }

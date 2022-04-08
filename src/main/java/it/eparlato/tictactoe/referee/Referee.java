@@ -5,21 +5,22 @@ import it.eparlato.tictactoe.BoardState;
 import it.eparlato.tictactoe.Mark;
 
 public class Referee {
-    private RefereeEvaluation evaluation;
+    private BoardGameRule boardGameRule;
 
     public void check(Board board) {
+        // RefereeEvaluation are in fact Board game conditions, or Board game Rules
         if (isARowTakenByPlayer(board.content())) {
-            evaluation = new GameOverAllFieldsInRowTakenByPlayerRefereeEvaluation();
+            boardGameRule = new GameOverAllFieldsInRowTaken();
             return;
         }
 
         if (board.state().equals(BoardState.FIELD_ALREADY_TAKEN)) {
-           evaluation = new RepeatRefereeEvaluation();
+           boardGameRule = new RepeatAction();
            return;
         }
 
         if (board.state().equals(BoardState.FIELD_TAKEN)) {
-            evaluation = new ProceedRefereeEvaluation();
+            boardGameRule = new ProceedToNextAction();
         }
     }
 
@@ -41,7 +42,7 @@ public class Referee {
         return false;
     }
 
-    public RefereeEvaluation evaluation() {
-        return evaluation;
+    public BoardGameRule evaluation() {
+        return boardGameRule;
     }
 }

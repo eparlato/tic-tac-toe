@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class ProceedRefereeEvaluationTest {
+class ProceedToNextActionTest {
     private final Game game = mock(Game.class);
-    private RefereeEvaluation evaluation;
+    private BoardGameRule evaluation;
 
     @BeforeEach
     void setUp() {
-        evaluation = new ProceedRefereeEvaluation();
+        evaluation = new ProceedToNextAction();
     }
 
     @Test

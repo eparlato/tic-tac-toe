@@ -1,7 +1,7 @@
 package it.eparlato.tictactoe;
 
 import it.eparlato.tictactoe.referee.Referee;
-import it.eparlato.tictactoe.referee.RefereeEvaluation;
+import it.eparlato.tictactoe.referee.BoardGameRule;
 
 public class Game
 {
@@ -22,9 +22,9 @@ public class Game
 
         referee.check(board);
 
-        RefereeEvaluation refereeEvaluation = referee.evaluation();
+        BoardGameRule boardGameRule = referee.evaluation();
 
-        refereeEvaluation.applyOn(this);
+        boardGameRule.applyOn(this);
     }
 
     public void gameOverDraw() {

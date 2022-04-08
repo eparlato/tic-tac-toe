@@ -4,16 +4,15 @@ import it.eparlato.tictactoe.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class RepeatRefereeEvaluationTest {
+class RepeatActionTest {
     private final Game game = mock(Game.class);
-    private RefereeEvaluation evaluation;
+    private BoardGameRule evaluation;
 
     @BeforeEach
     void setUp() {
-        evaluation = new RepeatRefereeEvaluation();
+        evaluation = new RepeatAction();
     }
 
     @Test

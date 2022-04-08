@@ -2,9 +2,9 @@ package it.eparlato.tictactoe.referee;
 
 import it.eparlato.tictactoe.Game;
 
-public class RepeatRefereeEvaluation implements RefereeEvaluation {
+public class GameOverDraw implements BoardGameRule {
     @Override
     public void applyOn(Game game) {
-        game.repeat();
+        game.gameOverDraw();
     }
 }
