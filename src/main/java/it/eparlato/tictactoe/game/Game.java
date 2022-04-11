@@ -50,6 +50,9 @@ public class Game
         state = GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN;
     }
 
+    public void gameOverDiagonalTakenByPlayer() {
+        this.state = GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL;
+    }
     public void switchPlayer() {
         currentPlayer = (currentPlayer == playerCross ? playerNought : playerCross);
     }

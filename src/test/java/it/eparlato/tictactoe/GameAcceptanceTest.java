@@ -95,10 +95,24 @@ public class GameAcceptanceTest {
         assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_NOUGHT);
     }
 
+    @Test
+    void a_game_is_over_when_all_fields_in_a_diagonal_are_taken_by_a_player() {
+        takeFieldAtCoordinates(2,0);
+        takeFieldAtCoordinates(2,1);
+        takeFieldAtCoordinates(1,1);
+        takeFieldAtCoordinates(2,2);
+        takeFieldAtCoordinates(0,2);
+
+        GameSnapshot snapshot = game.snapshot();
+        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL);
+        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_CROSS);
+    }
+
     private List<BoardGameRule> setupGameOverRules() {
         List<BoardGameRule> gameOverRules = new ArrayList<>();
         gameOverRules.add(new GameOverAllFieldsInRowTaken());
         gameOverRules.add(new GameOverAllFieldsInColumnTaken());
+        gameOverRules.add(new GameOverAllFieldsInDiagonalTaken());
         return gameOverRules;
     }
 

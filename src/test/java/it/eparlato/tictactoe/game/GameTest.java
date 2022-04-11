@@ -66,5 +66,8 @@ class GameTest {
 
         game.gameOverColumnTakenByPlayer();
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN);
+
+        game.gameOverDiagonalTakenByPlayer();
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL);
     }
 }
