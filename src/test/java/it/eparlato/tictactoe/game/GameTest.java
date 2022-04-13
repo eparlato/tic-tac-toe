@@ -52,7 +52,7 @@ class GameTest {
 
     @Test
     void exposes_methods_that_change_its_state() {
-        game.gameOverDraw();
+        game.gameOverAllFieldsTaken();
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
 
         game.repeat();
@@ -69,5 +69,8 @@ class GameTest {
 
         game.gameOverDiagonalTakenByPlayer();
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL);
+
+        game.gameOverAllFieldsTaken();
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
     }
 }

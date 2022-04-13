@@ -30,7 +30,7 @@ public class Game
         boardGameRule.applyOn(this);
     }
 
-    public void gameOverDraw() {
+    public void gameOverAllFieldsTaken() {
         state = GameState.GAME_OVER_DRAW;
     }
 
