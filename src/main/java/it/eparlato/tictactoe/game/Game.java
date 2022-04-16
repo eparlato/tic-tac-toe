@@ -68,4 +68,8 @@ public class Game
     public GameSnapshot snapshot() {
         return new GameSnapshot(board.content(), currentPlayer, state);
     }
+
+    public boolean isOver() {
+        return false;
+    }
 }
