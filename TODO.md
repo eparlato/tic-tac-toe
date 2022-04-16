@@ -1,1 +1,1 @@
-use parameterized tests for GameOverAllFieldsInRowTaken, GameOverAllFieldsInCOlumnTaken, GameOverAllFieldsInDiagonalTaken
+use parameterized tests for GameOverAllFieldsInRowTaken, GameOverAllFieldsInColumnTaken, GameOverAllFieldsInDiagonalTaken
