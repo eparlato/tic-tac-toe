@@ -29,6 +29,11 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
         showBoard(snapshot.boardContent());
     }
 
+    @Override
+    public void showGameOverMessage() {
+        printStream.print(GAME_OVER_MESSAGE);
+    }
+
     private void showBoard(Mark[][] boardContent) {
         StringBuilder sb = new StringBuilder();
 
@@ -37,10 +42,5 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
         }
 
         printStream.print(sb);
-    }
-
-    @Override
-    public void showGameOverMessage() {
-        printStream.print(GAME_OVER_MESSAGE);
     }
 }
