@@ -37,9 +37,11 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
     private void showBoard(Mark[][] boardContent) {
         StringBuilder sb = new StringBuilder();
 
+        sb.append("\n");
         for (Mark[] row : boardContent) {
             sb.append(symbolMap.get(row[0])).append("|").append(symbolMap.get(row[1])).append("|").append(symbolMap.get(row[2])).append("\n");
         }
+        sb.append("\n");
 
         printStream.print(sb);
     }

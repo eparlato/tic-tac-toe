@@ -17,7 +17,7 @@ public class ConsoleApplicationInput implements ApplicationInput {
         6, new FieldCoordinates(1, 2),
         7, new FieldCoordinates(2, 0),
         8, new FieldCoordinates(2, 1),
-        9, new FieldCoordinates(2, 1)
+        9, new FieldCoordinates(2, 2)
     );
 
     public ConsoleApplicationInput(InputStream inputStream) {
