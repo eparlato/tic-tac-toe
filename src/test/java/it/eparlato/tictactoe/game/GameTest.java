@@ -73,4 +73,28 @@ class GameTest {
         game.gameOverAllFieldsTaken();
         assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
     }
+
+    @Test
+    void knows_when_is_over() {
+        game = new Game(board, referee);
+        assertThat(game.isOver()).isFalse();
+
+        game.gameOverAllFieldsTaken();
+        assertThat(game.isOver()).isTrue();
+
+        game.gameOverRowTakenByPlayer();
+        assertThat(game.isOver()).isTrue();
+
+        game.gameOverDiagonalTakenByPlayer();
+        assertThat(game.isOver()).isTrue();
+
+        game.repeat();
+        assertThat(game.isOver()).isFalse();
+
+        game.gameOverColumnTakenByPlayer();
+        assertThat(game.isOver()).isTrue();
+
+        game.proceed();
+        assertThat(game.isOver()).isFalse();
+    }
 }

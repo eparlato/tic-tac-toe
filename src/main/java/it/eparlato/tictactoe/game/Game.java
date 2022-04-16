@@ -70,6 +70,9 @@ public class Game
     }
 
     public boolean isOver() {
-        return false;
+        return state.equals(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN)
+                || state.equals(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL)
+                || state.equals(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW)
+                || state.equals(GameState.GAME_OVER_DRAW);
     }
 }
