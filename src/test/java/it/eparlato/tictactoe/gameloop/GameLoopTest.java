@@ -46,6 +46,7 @@ public class GameLoopTest {
         verify(input, times(2)).getFieldCoordinates();
         verify(game).takeField(firstFieldCoordinates);
         verify(game).takeField(secondFieldCoordinates);
+        verify(output, times(3)).showGameSnapshot(game.snapshot());
     }
 
     @Test

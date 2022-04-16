@@ -17,6 +17,7 @@ public class GameLoop {
 
         while(!game.isOver()) {
             game.takeField(input.getFieldCoordinates());
+            output.showGameSnapshot(game.snapshot());
         }
 
         output.showGameOverMessage();
