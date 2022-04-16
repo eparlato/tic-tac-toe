@@ -29,7 +29,7 @@ public class GameLoopTest {
     }
 
     @Test
-    void send_field_coordinates_from_input_to_game_until_the_game_is_over() {
+    void sends_field_coordinates_from_input_to_game_until_the_game_is_over() {
         FieldCoordinates firstFieldCoordinates = new FieldCoordinates(0, 0);
         FieldCoordinates secondFieldCoordinates = new FieldCoordinates(0, 1);
         when(input.getFieldCoordinates())
@@ -46,5 +46,14 @@ public class GameLoopTest {
         verify(input, times(2)).getFieldCoordinates();
         verify(game).takeField(firstFieldCoordinates);
         verify(game).takeField(secondFieldCoordinates);
+    }
+
+    @Test
+    void shows_a_message_when_the_game_is_over() {
+        when(game.isOver()).thenReturn(true);
+
+        gameLoop.start(game);
+
+        verify(output).showGameOverMessage();
     }
 }

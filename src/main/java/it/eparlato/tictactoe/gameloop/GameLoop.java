@@ -3,8 +3,8 @@ package it.eparlato.tictactoe.gameloop;
 import it.eparlato.tictactoe.game.Game;
 
 public class GameLoop {
-    private ApplicationInput input;
-    private ApplicationOutput output;
+    private final ApplicationInput input;
+    private final ApplicationOutput output;
 
     public GameLoop(ApplicationInput input, ApplicationOutput output) {
         this.input = input;
@@ -18,5 +18,7 @@ public class GameLoop {
         while(!game.isOver()) {
             game.takeField(input.getFieldCoordinates());
         }
+
+        output.showGameOverMessage();
     }
 }

@@ -6,4 +6,6 @@ public interface ApplicationOutput {
     void showWelcomeMessage();
 
     void showGameSnapshot(GameSnapshot snapshot);
+
+    void showGameOverMessage();
 }
