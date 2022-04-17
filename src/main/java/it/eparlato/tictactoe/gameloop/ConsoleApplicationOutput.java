@@ -14,12 +14,13 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
                         Mark.NOUGHT, "O");
 
     public final static String INSTRUCTIONS =
-            "How to play: when a player takes turn, it writes the number of the field on the board to place its mark on it\n\n" +
+            "\nHow to play: when a player takes turn, it writes the number of the field on the board to place its mark on it\n\n" +
             "1|2|3\n" +
             "4|5|6\n" +
-            "7|8|9\n\n";
-    private static final String LINE_SEPARATOR = "------\n";
-    public static final String GAME_OVER_MESSAGE = "The Game is over, goodbye\n";
+            "7|8|9\n";
+    private static final String LINE_SEPARATOR = "\n------\n";
+    public static final String PLAYER_TAKES_TURN_MESSAGE = "\nPlayer %s takes turn\n";
+    public static final String GAME_OVER_MESSAGE = "\nThe Game is over, goodbye\n";
 
     public ConsoleApplicationOutput(PrintStream printStream) {
         this.printStream = printStream;
@@ -38,7 +39,7 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
 
     @Override
     public void showPlayerTakingTurn(Player currentPlayer) {
-        printStream.printf("\nPlayer %s takes turn\n", symbolMap.get(currentPlayer.mark()));
+        printStream.printf(PLAYER_TAKES_TURN_MESSAGE, symbolMap.get(currentPlayer.mark()));
     }
 
     @Override
