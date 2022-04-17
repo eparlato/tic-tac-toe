@@ -12,14 +12,13 @@ public class Board {
     };
 
     public void takeField(FieldCoordinates fieldCoordinates, Player player) {
-        if( isFieldNotEmpty(fieldCoordinates) &&
-                isFieldAlreadyTakenByTheOtherPlayer(fieldCoordinates, player.mark())) {
-            state = BoardState.FIELD_ALREADY_TAKEN;
+        if (isFieldEmpty(fieldCoordinates)) {
+            content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()] = player.mark();
+            state = BoardState.FIELD_TAKEN;
             return;
         }
 
-        content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()] = player.mark();
-        state = BoardState.FIELD_TAKEN;
+        state = BoardState.FIELD_ALREADY_TAKEN;
     }
 
     public BoardState state() {
@@ -30,11 +29,7 @@ public class Board {
         return content;
     }
 
-    private boolean isFieldNotEmpty(FieldCoordinates fieldCoordinates) {
-        return !content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()].equals(Mark.EMPTY);
-    }
-
-    private boolean isFieldAlreadyTakenByTheOtherPlayer(FieldCoordinates fieldCoordinates, Mark playerMark) {
-        return !content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()].equals(playerMark);
+    private boolean isFieldEmpty(FieldCoordinates fieldCoordinates) {
+        return content[fieldCoordinates.rowIndex()][fieldCoordinates.columnIndex()].equals(Mark.EMPTY);
     }
 }

@@ -43,7 +43,7 @@ class BoardTest {
     }
 
     @Test
-    void do_not_mark_a_field_already_taken() {
+    void do_not_mark_a_field_already_taken_by_another_player() {
         Mark[][] boardWithLowerLeftFieldMarkWithNought =
                 {
                         {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
@@ -54,6 +54,23 @@ class BoardTest {
 
         board.takeField(new FieldCoordinates(2,1), new Player(Mark.NOUGHT));
         board.takeField(new FieldCoordinates(2,1), new Player(Mark.CROSS));
+
+        assertThat(board.state()).isEqualTo(BoardState.FIELD_ALREADY_TAKEN);
+        assertThat(board.content()).isEqualTo(boardWithLowerLeftFieldMarkWithNought);
+    }
+
+    @Test
+    void do_not_mark_a_field_already_taken_by_the_same_player() {
+        Mark[][] boardWithLowerLeftFieldMarkWithNought =
+                {
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY},
+                        {Mark.EMPTY, Mark.NOUGHT, Mark.EMPTY}
+                };
+
+
+        board.takeField(new FieldCoordinates(2,1), new Player(Mark.NOUGHT));
+        board.takeField(new FieldCoordinates(2,1), new Player(Mark.NOUGHT));
 
         assertThat(board.state()).isEqualTo(BoardState.FIELD_ALREADY_TAKEN);
         assertThat(board.content()).isEqualTo(boardWithLowerLeftFieldMarkWithNought);
