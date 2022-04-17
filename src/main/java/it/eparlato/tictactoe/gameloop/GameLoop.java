@@ -13,13 +13,14 @@ public class GameLoop {
 
     public void start(Game game) {
         output.showInstructions();
-        output.showGameSnapshot(game.snapshot());
+        output.showBoard(game.boardContent());
 
         while(!game.isOver()) {
+            output.showBoard(game.boardContent());
             game.takeField(input.getFieldCoordinates());
-            output.showGameSnapshot(game.snapshot());
         }
 
         output.showGameOverMessage();
+        output.showBoard(game.boardContent());
     }
 }

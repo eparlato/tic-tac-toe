@@ -1,8 +1,6 @@
 package it.eparlato.tictactoe.gameloop;
 
 import it.eparlato.tictactoe.board.Mark;
-import it.eparlato.tictactoe.game.GameSnapshot;
-import it.eparlato.tictactoe.game.GameState;
 import it.eparlato.tictactoe.game.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,9 +49,7 @@ public class ConsoleApplicationOutputTest {
                 "O| |X\n" +
                 "O|X| \n";
 
-        GameSnapshot gameSnapshot = new GameSnapshot(boardContent, new Player(Mark.NOUGHT), GameState.PROCEEDING);
-
-        output.showGameSnapshot(gameSnapshot);
+        output.showBoard(boardContent);
 
         assertOutputContains(expectedShownBoard);
     }
@@ -65,9 +61,8 @@ public class ConsoleApplicationOutputTest {
                 { Mark.NOUGHT, Mark.EMPTY, Mark.CROSS },
                 { Mark.NOUGHT, Mark.CROSS, Mark.EMPTY },
         };
-        GameSnapshot gameSnapshot = new GameSnapshot(boardContent, new Player(Mark.NOUGHT), GameState.PROCEEDING);
 
-        output.showPlayerTakingTurn(gameSnapshot.currentPlayer());
+        output.showPlayerTakingTurn(new Player(Mark.NOUGHT));
 
         assertOutputContains("Player O takes turn");
     }

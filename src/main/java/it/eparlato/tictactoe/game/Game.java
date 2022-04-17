@@ -65,8 +65,8 @@ public class Game
         return currentPlayer;
     }
 
-    public GameSnapshot snapshot() {
-        return new GameSnapshot(board.content(), currentPlayer, state);
+    public Mark[][] boardContent() {
+        return board.content();
     }
 
     public boolean isOver() {

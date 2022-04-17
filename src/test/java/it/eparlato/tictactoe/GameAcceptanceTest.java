@@ -4,7 +4,6 @@ import it.eparlato.tictactoe.board.Board;
 import it.eparlato.tictactoe.board.FieldCoordinates;
 import it.eparlato.tictactoe.board.Mark;
 import it.eparlato.tictactoe.game.Game;
-import it.eparlato.tictactoe.game.GameSnapshot;
 import it.eparlato.tictactoe.game.GameState;
 import it.eparlato.tictactoe.game.Player;
 import it.eparlato.tictactoe.rules.*;
@@ -40,9 +39,7 @@ public class GameAcceptanceTest {
                 {Mark.EMPTY, Mark.EMPTY, Mark.EMPTY}
         };
 
-        GameSnapshot snapshot = game.snapshot();
-
-        assertThat(snapshot.boardContent()).isEqualTo(empty3x3Board);
+        assertThat(game.boardContent()).isEqualTo(empty3x3Board);
     }
 
     @Test
@@ -65,7 +62,7 @@ public class GameAcceptanceTest {
         Player aDifferentPlayer = getCurrentPlayer();
 
         assertThat(aPlayer).isNotEqualTo(aDifferentPlayer);
-        assertThat(game.snapshot().gameState()).isEqualTo(GameState.PROCEEDING);
+        assertThat(game.state()).isEqualTo(GameState.PROCEEDING);
     }
 
     @Test
@@ -76,9 +73,8 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(2, 1);
         takeFieldAtCoordinates(1, 2);
 
-        GameSnapshot snapshot = game.snapshot();
-        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
-        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_CROSS);
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_ROW);
+        assertThat(game.currentPlayer()).isEqualTo(PLAYER_CROSS);
     }
 
     @Test
@@ -90,9 +86,8 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(2, 2);
         takeFieldAtCoordinates(2, 0);
 
-        GameSnapshot snapshot = game.snapshot();
-        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN);
-        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_NOUGHT);
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_COLUMN);
+        assertThat(game.currentPlayer()).isEqualTo(PLAYER_NOUGHT);
     }
 
     @Test
@@ -103,9 +98,8 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(2,2);
         takeFieldAtCoordinates(0,2);
 
-        GameSnapshot snapshot = game.snapshot();
-        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL);
-        assertThat(snapshot.currentPlayer()).isEqualTo(PLAYER_CROSS);
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_ALL_FIELDS_TAKEN_ON_DIAGONAL);
+        assertThat(game.currentPlayer()).isEqualTo(PLAYER_CROSS);
     }
 
     @Test
@@ -120,8 +114,7 @@ public class GameAcceptanceTest {
         takeFieldAtCoordinates(0,2);
         takeFieldAtCoordinates(0,1);
 
-        GameSnapshot snapshot = game.snapshot();
-        assertThat(snapshot.gameState()).isEqualTo(GameState.GAME_OVER_DRAW);
+        assertThat(game.state()).isEqualTo(GameState.GAME_OVER_DRAW);
     }
 
     private List<BoardGameRule> setupGameOverRules() {
@@ -145,7 +138,6 @@ public class GameAcceptanceTest {
     }
 
     private Player getCurrentPlayer() {
-        GameSnapshot snapshot = game.snapshot();
-        return snapshot.currentPlayer();
+        return game.currentPlayer();
     }
 }

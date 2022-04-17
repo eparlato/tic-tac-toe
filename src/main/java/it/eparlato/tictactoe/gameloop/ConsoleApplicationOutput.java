@@ -1,7 +1,6 @@
 package it.eparlato.tictactoe.gameloop;
 
 import it.eparlato.tictactoe.board.Mark;
-import it.eparlato.tictactoe.game.GameSnapshot;
 import it.eparlato.tictactoe.game.Player;
 
 import java.io.PrintStream;
@@ -33,12 +32,6 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
     }
 
     @Override
-    public void showGameSnapshot(GameSnapshot snapshot) {
-        showBoard(snapshot.boardContent());
-        printStream.print(LINE_SEPARATOR);
-    }
-
-    @Override
     public void showGameOverMessage() {
         printStream.print(GAME_OVER_MESSAGE);
     }
@@ -48,7 +41,8 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
         printStream.printf("Player %s takes turn\n", symbolMap.get(currentPlayer.mark()));
     }
 
-    private void showBoard(Mark[][] boardContent) {
+    @Override
+    public void showBoard(Mark[][] boardContent) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n");

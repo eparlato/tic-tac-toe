@@ -19,13 +19,13 @@ public class GameLoopTest {
     }
 
     @Test
-    void displays_a_welcome_message_with_a_game_snapshot() {
+    void displays_a_welcome_message_with_the_game_board() {
         when(game.isOver()).thenReturn(true);
 
         gameLoop.start(game);
 
         verify(output).showInstructions();
-        verify(output).showGameSnapshot(game.snapshot());
+        verify(output, times(2)).showBoard(game.boardContent());
     }
 
     @Test
@@ -46,15 +46,31 @@ public class GameLoopTest {
         verify(input, times(2)).getFieldCoordinates();
         verify(game).takeField(firstFieldCoordinates);
         verify(game).takeField(secondFieldCoordinates);
-        verify(output, times(3)).showGameSnapshot(game.snapshot());
     }
 
     @Test
-    void shows_a_message_when_the_game_is_over() {
+    void shows_the_game_board_every_time_a_player_takes_turn() {
+        when(input.getFieldCoordinates())
+                .thenReturn(new FieldCoordinates(0,0))
+                .thenReturn(new FieldCoordinates(0,1));
+
+        when(game.isOver())
+                .thenReturn(false)
+                .thenReturn(false)
+                .thenReturn(true);
+
+        gameLoop.start(game);
+
+        verify(output, times(4)).showBoard(game.boardContent());
+    }
+
+    @Test
+    void shows_a_message_and_the_game_board_when_the_game_is_over() {
         when(game.isOver()).thenReturn(true);
 
         gameLoop.start(game);
 
         verify(output).showGameOverMessage();
+        verify(output, times(2)).showBoard(game.boardContent());
     }
 }
