@@ -18,7 +18,7 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
             "1|2|3\n" +
             "4|5|6\n" +
             "7|8|9\n\n";
-    private static final String LINE_SEPARATOR = "------";
+    private static final String LINE_SEPARATOR = "------\n";
     public static final String GAME_OVER_MESSAGE = "The Game is over, goodbye\n";
 
     public ConsoleApplicationOutput(PrintStream printStream) {
@@ -38,7 +38,7 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
 
     @Override
     public void showPlayerTakingTurn(Player currentPlayer) {
-        printStream.printf("Player %s takes turn\n", symbolMap.get(currentPlayer.mark()));
+        printStream.printf("\nPlayer %s takes turn\n", symbolMap.get(currentPlayer.mark()));
     }
 
     @Override
@@ -49,7 +49,6 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
         for (Mark[] row : boardContent) {
             sb.append(symbolMap.get(row[0])).append("|").append(symbolMap.get(row[1])).append("|").append(symbolMap.get(row[2])).append("\n");
         }
-        sb.append("\n");
 
         printStream.print(sb);
     }

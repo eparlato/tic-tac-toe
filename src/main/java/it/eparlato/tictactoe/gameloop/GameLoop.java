@@ -16,6 +16,7 @@ public class GameLoop {
 
         while(!game.isOver()) {
             output.showBoard(game.boardContent());
+            output.showPlayerTakingTurn(game.currentPlayer());
             game.takeField(input.getFieldCoordinates());
         }
 

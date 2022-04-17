@@ -64,6 +64,18 @@ public class GameLoopTest {
     }
 
     @Test
+    void show_the_current_player_every_time_a_player_takes_turn() {
+        when(game.isOver())
+                .thenReturn(false)
+                .thenReturn(false)
+                .thenReturn(true);
+
+        gameLoop.start(game);
+
+        verify(output, times(2)).showPlayerTakingTurn(game.currentPlayer());
+    }
+
+    @Test
     void shows_a_closing_message_and_the_board_content_when_the_game_is_over() {
         when(game.isOver()).thenReturn(true);
 
