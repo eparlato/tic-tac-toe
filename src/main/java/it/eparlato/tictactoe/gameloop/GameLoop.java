@@ -12,7 +12,7 @@ public class GameLoop {
     }
 
     public void start(Game game) {
-        output.showWelcomeMessage();
+        output.showInstructions();
         output.showGameSnapshot(game.snapshot());
 
         while(!game.isOver()) {

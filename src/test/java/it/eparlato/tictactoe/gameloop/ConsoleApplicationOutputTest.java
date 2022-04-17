@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.GAME_OVER_MESSAGE;
-import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.WELCOME_MESSAGE;
+import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.INSTRUCTIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConsoleApplicationOutputTest {
@@ -26,10 +26,10 @@ public class ConsoleApplicationOutputTest {
     }
 
     @Test
-    void shows_a_welcome_message() throws UnsupportedEncodingException {
-        output.showWelcomeMessage();
+    void shows_how_to_play_instructions() throws UnsupportedEncodingException {
+        output.showInstructions();
 
-        assertOutputContains(WELCOME_MESSAGE);
+        assertOutputContains(INSTRUCTIONS);
     }
 
     @Test
@@ -56,6 +56,20 @@ public class ConsoleApplicationOutputTest {
         output.showGameSnapshot(gameSnapshot);
 
         assertOutputContains(expectedShownBoard);
+    }
+
+    @Test
+    void shows_the_player_taking_turn() throws UnsupportedEncodingException {
+        Mark[][] boardContent = {
+                { Mark.EMPTY, Mark.CROSS, Mark.EMPTY },
+                { Mark.NOUGHT, Mark.EMPTY, Mark.CROSS },
+                { Mark.NOUGHT, Mark.CROSS, Mark.EMPTY },
+        };
+        GameSnapshot gameSnapshot = new GameSnapshot(boardContent, new Player(Mark.NOUGHT), GameState.PROCEEDING);
+
+        output.showPlayerTakingTurn(gameSnapshot.currentPlayer());
+
+        assertOutputContains("Player O takes turn");
     }
 
     private void assertOutputContains(String text) throws UnsupportedEncodingException {

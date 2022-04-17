@@ -24,7 +24,7 @@ public class GameLoopTest {
 
         gameLoop.start(game);
 
-        verify(output).showWelcomeMessage();
+        verify(output).showInstructions();
         verify(output).showGameSnapshot(game.snapshot());
     }
 

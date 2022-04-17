@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.GAME_OVER_MESSAGE;
-import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.WELCOME_MESSAGE;
+import static it.eparlato.tictactoe.gameloop.ConsoleApplicationOutput.INSTRUCTIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TicTacToeE2ETest {
@@ -27,7 +27,7 @@ public class TicTacToeE2ETest {
         new TicTacToe(new ConsoleApplicationInput(new ByteArrayInputStream(sequenceOfActions.getBytes(StandardCharsets.UTF_8))),
                 new ConsoleApplicationOutput(new PrintStream(baos)));
 
-        assertOutputContains(WELCOME_MESSAGE);
+        assertOutputContains(INSTRUCTIONS);
         assertOutputContains(expectedBoard);
         assertOutputContains(GAME_OVER_MESSAGE);
     }
