@@ -32,7 +32,12 @@ public class ConsoleApplicationOutputTest {
 
     @Test
     void shows_a_game_over_message() throws UnsupportedEncodingException {
-        output.showGameOverMessage();
+        Mark[][] boardContent = {
+                { Mark.EMPTY, Mark.CROSS, Mark.EMPTY },
+                { Mark.NOUGHT, Mark.EMPTY, Mark.CROSS },
+                { Mark.NOUGHT, Mark.CROSS, Mark.EMPTY },
+        };
+        output.showClosingMessage();
 
         assertOutputContains(GAME_OVER_MESSAGE);
     }
@@ -56,12 +61,6 @@ public class ConsoleApplicationOutputTest {
 
     @Test
     void shows_the_player_taking_turn() throws UnsupportedEncodingException {
-        Mark[][] boardContent = {
-                { Mark.EMPTY, Mark.CROSS, Mark.EMPTY },
-                { Mark.NOUGHT, Mark.EMPTY, Mark.CROSS },
-                { Mark.NOUGHT, Mark.CROSS, Mark.EMPTY },
-        };
-
         output.showPlayerTakingTurn(new Player(Mark.NOUGHT));
 
         assertOutputContains("Player O takes turn");

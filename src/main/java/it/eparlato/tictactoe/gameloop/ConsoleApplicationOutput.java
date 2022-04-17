@@ -32,7 +32,7 @@ public class ConsoleApplicationOutput implements ApplicationOutput {
     }
 
     @Override
-    public void showGameOverMessage() {
+    public void showClosingMessage() {
         printStream.print(GAME_OVER_MESSAGE);
     }
 

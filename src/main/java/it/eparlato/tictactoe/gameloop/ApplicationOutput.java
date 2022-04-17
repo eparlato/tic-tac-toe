@@ -6,7 +6,7 @@ import it.eparlato.tictactoe.game.Player;
 public interface ApplicationOutput {
     void showInstructions();
 
-    void showGameOverMessage();
+    void showClosingMessage();
 
     void showPlayerTakingTurn(Player currentPlayer);
 

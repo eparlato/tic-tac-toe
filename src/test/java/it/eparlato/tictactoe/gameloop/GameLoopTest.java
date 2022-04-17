@@ -19,13 +19,12 @@ public class GameLoopTest {
     }
 
     @Test
-    void displays_a_welcome_message_with_the_game_board() {
+    void displays_a_welcome_screen() {
         when(game.isOver()).thenReturn(true);
 
         gameLoop.start(game);
 
         verify(output).showInstructions();
-        verify(output, times(2)).showBoard(game.boardContent());
     }
 
     @Test
@@ -61,16 +60,16 @@ public class GameLoopTest {
 
         gameLoop.start(game);
 
-        verify(output, times(4)).showBoard(game.boardContent());
+        verify(output, times(3)).showBoard(game.boardContent());
     }
 
     @Test
-    void shows_a_message_and_the_game_board_when_the_game_is_over() {
+    void shows_a_closing_message_and_the_board_content_when_the_game_is_over() {
         when(game.isOver()).thenReturn(true);
 
         gameLoop.start(game);
 
-        verify(output).showGameOverMessage();
-        verify(output, times(2)).showBoard(game.boardContent());
+        verify(output).showClosingMessage();
+        verify(output).showBoard(game.boardContent());
     }
 }
